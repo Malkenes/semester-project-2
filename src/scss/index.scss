@@ -12,7 +12,7 @@
   border: none;
   background: rgba(217, 217, 217, 0.5);
   div {
-    z-index: -2;
+    z-index: -1;
     background: $primary;
     position: absolute;
     top: 0;
@@ -40,5 +40,22 @@ footer {
   .nav-link {
     color: white;
     font-weight: 600;
+  }
+}
+#btn-group {
+  .col-sm-12 {
+    aspect-ratio: 2/1;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: 12px;
+  }
+  .img-one {
+    background-image: url(../../images/pexels-solliefoto.jpg);
+  }
+  .img-two {
+    background-image: url(../../images/pexels-freestockpro.jpg);
   }
 }
