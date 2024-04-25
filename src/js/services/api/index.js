@@ -3,7 +3,7 @@ export async function login(data) {
   const options = {
     method: "post",
     headers: {
-      "Content-Type": "application/json",
+      "content-type": "application/json",
     },
     body: JSON.stringify(data),
   };
@@ -13,7 +13,6 @@ export async function login(data) {
       options,
     );
     if (!response.ok) {
-      console.log("haha");
       const authError = document.querySelector("#auth-error");
       authError.style.display = "block";
     } else {
