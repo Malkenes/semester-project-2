@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Lobster&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/6a870feefe.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/dist/css/index.css" />
+    <script
+      src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <title>Vahu | Home</title>
+  </head>
+  <body class="min-vh-100 d-flex flex-column">
+    <header class="sticky-top">
+      <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img
+              src="./images/logo.png"
+              height="32"
+              alt="vahu logo in purple text"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarSupportedContent"
+          >
+            <form class="d-flex me-2 my-3">
+              <div class="input-group">
+                <button class="btn position-absolute z-3" type="submit">
+                  <i class="fas fa-magnifying-glass"></i>
+                </button>
+                <input
+                  class="custom-form-control z-1 ps-5"
+                  placeholder="search"
+                  type="search"
+                  name=""
+                  id=""
+                />
+              </div>
+            </form>
+            <ul class="navbar-nav me-2 h5 my-3">
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+            <div class="d-md-none bg-primary bg-opacity-10 my-3">
+              <div class="profile-nav"></div>
+            </div>
+            <div class="me-2 d-flex justify-content-center my-3">
+              <a href="login.html" class="btn custom-btn" id="logged-in">
+                LOG IN
+                <div></div>
+              </a>
+              <button class="d-none custom-btn-danger">
+                LOG OUT
+                <div></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-none d-md-block bg-primary bg-opacity-10">
+        <div class="profile-nav"></div>
+      </div>
+    </header>
+    <main class="flex-grow-1 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4">
+            <h1 class="mb-3">LOG IN</h1>
+            <form class="py-3" id="login-form">
+              <p>Only logged in members can bid on listings</p>
+              <div class="form-floating mb-3">
+                <input
+                  class="custom-form-control-primary"
+                  name="email"
+                  type="email"
+                  id="floating-email"
+                  placeholder="name@stud.noroff.no"
+                  pattern="\w+@stud\.noroff\.no"
+                  required
+                />
+                <label for="floating-email">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  class="custom-form-control-primary"
+                  name="password"
+                  type="password"
+                  id="floating-password"
+                  placeholder="password"
+                  name="password"
+                  minlength="8"
+                  required
+                />
+                <label for="floating-password">Password</label>
+              </div>
+              <div class="invalid-feedback mb-3" id="auth-error">
+                Something went wrong, please try again!
+              </div>
+              <button class="custom-btn-lg w-100 mb-3">
+                LOG IN
+                <div class="button-bg"></div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-3">
+      <div class="container-fluid text-white">
+        <div class="row align-items-center">
+          <div class="col-sm-12 col-md-2 text-center my-3">
+            <div class="p-2 bg-white d-inline-block">
+              <img
+                src="images/logo.png"
+                height="32"
+                width="80"
+                alt="vahu logo in purple text"
+              />
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-2 my-3">
+            <div class="fs-3 d-flex gap-3 justify-content-center">
+              <i class="fab fa-facebook"></i>
+              <i class="fab fa-x-twitter"></i>
+              <i class="fab fa-instagram"></i>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-8 my-3">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Terms of service</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Seller</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Buyer</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="src/js/index.js"></script>
+  </body>
+</html>
