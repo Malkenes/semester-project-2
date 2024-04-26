@@ -1,4 +1,6 @@
 import { loginListener } from "./services/auth/index.js";
+import { tab } from "./components/tabComponent.mjs";
+tab();
 const loginForm = document.querySelector("#login-form");
 if (loginForm) {
   loginForm.addEventListener("submit", loginListener);
