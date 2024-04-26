@@ -5,6 +5,7 @@ const btnNext = document.querySelector("#next-btn");
 const btnPrev = document.querySelector("#prev-btn");
 let currentTab = 0;
 export function tab() {
+    console.log(registerForm);
     if (registerForm) {
         showTab(0);
         btnNext.addEventListener("click", (e) => {
@@ -15,6 +16,8 @@ export function tab() {
             e.preventDefault();
             cycleTab(-1);
         })
+    } else {
+        return;
     }
 }
 

@@ -1,6 +1,6 @@
 import { loginListener } from "./services/auth/index.js";
-import { tab } from "./components/tabComponent.mjs";
-tab();
+//import { tab } from "./components/tabComponent.mjs";
+//tab();
 const loginForm = document.querySelector("#login-form");
 if (loginForm) {
   loginForm.addEventListener("submit", loginListener);
@@ -17,6 +17,6 @@ function updateLoggedInUserUI() {
     window.location.href = "/";
   };
   logoutButton.classList.add("custom-btn-danger");
-  logoutButton.innerHTML = `LOG OUT <div></div>`;
+  logoutButton.innerText = "LOG OUT";
   loggedIn.replaceWith(logoutButton);
 }
