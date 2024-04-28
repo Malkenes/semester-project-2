@@ -27,6 +27,8 @@
   }
   &:hover {
     background: rgba(217, 217, 217, 0);
+  }
+  &:focus {
     &::after {
       box-shadow: 0 0;
     }

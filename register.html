@@ -99,9 +99,14 @@
                         type="text"
                         id="floating-name"
                         placeholder="my_username"
+                        pattern="[a-zA-Z0-9_]+$"
                         required
                       />
                       <label for="floating-name">User Name</label>
+                      <div class="form-text">
+                        must not contain punctuation symbols apart from
+                        underscore ( _ )
+                      </div>
                     </div>
                     <div class="form-floating mb-3">
                       <input
@@ -114,6 +119,9 @@
                         required
                       />
                       <label for="floating-email">Email Address</label>
+                      <div class="form-text">
+                        must be a @stud.noroff.no email address
+                      </div>
                     </div>
                     <div class="form-floating mb-3">
                       <input
@@ -126,6 +134,7 @@
                         required
                       />
                       <label for="floating-password">Password</label>
+                      <div class="form-text">must be atleast 8 characters</div>
                     </div>
                     <div class="form-floating mb-3">
                       <input
@@ -140,20 +149,23 @@
                       <label for="floating-password_repeat"
                         >Repeat Password</label
                       >
+                      <div class="invalid-feedback">
+                        passwords are not the same
+                      </div>
                     </div>
                   </div>
                   <div class="register-tab d-none">
                     <div class="mb-3">
-                      <label for="floating-bio">Bio</label>
+                      <label class="h5" for="bio">Bio</label>
                       <textarea
                         class="custom-form-control-primary"
                         name="bio"
-                        id="floating-bio"
+                        id="bio"
                         rows="5"
                         maxlength="160"
                       ></textarea>
                     </div>
-                    Max 160 characters
+                    <div class="form-text">max 160 characters</div>
                   </div>
                   <div class="register-tab d-none">
                     <h2 class="fs-5">Choose Avatar</h2>
@@ -191,7 +203,7 @@
                   </div>
                   <div class="register-tab d-none">
                     <h2 class="fs-5">Choose Banner</h2>
-                    <div class="bg-primary p-3 mb-3">
+                    <div class="bg-banner p-3 mb-3">
                       <img
                         class="bg-white rounded-circle object-fit-cover"
                         src="images/logo.png"
@@ -230,7 +242,7 @@
                   >
                     <button class="custom-btn" id="prev-btn">Back</button>
                     <ul
-                      class="list-group list-group-flush text-center d-none d-sm-flex"
+                      class="list-group list-group-flush text-center d-none d-sm-flex py-5"
                     >
                       <li class="list-group-item active">
                         <div class="fw-bold">Credentials</div>
@@ -250,6 +262,7 @@
                       </li>
                     </ul>
                     <button class="custom-btn" id="next-btn">Continue</button>
+                    <button class="custom-btn" id="submit-btn">Submit</button>
                   </div>
                 </div>
               </div>
