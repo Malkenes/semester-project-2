@@ -1,6 +1,6 @@
-import { checkRepeatPassword } from "../../utils/validation.mjs";
-import { verifyURL } from "../../services/api/verifyUrl.mjs";
-
+import { addTag } from "../forms/addTag.mjs";
+import { checkRequired } from "../forms/formValidation.mjs";
+import { setLiveImage } from "../forms/setLiveImage.mjs";
 const tabContent = document.querySelectorAll(".tab");
 const btnNext = document.querySelector("#next-btn");
 const btnPrev = document.querySelector("#prev-btn");
@@ -12,7 +12,7 @@ export function tab(form) {
         showTab(0, form);
         btnNext.addEventListener("click", (e) => {
             e.preventDefault();
-            if (!checkRequired()) return false;
+            if (!checkRequired(tabContent[currentTab])) return false;
             cycleTab(1,form);
         })
         btnPrev.addEventListener("click", (e) => {
@@ -42,6 +42,10 @@ function showTab(tabIndex, form) {
     if (tabContent[tabIndex].querySelector("input[type=url]")) {
         setLiveImage(tabContent[tabIndex]);
     }
+    if (tabContent[tabIndex].classList.contains("tab-tags")) {
+        const addTagBtn = document.querySelector("#tag-add");
+        addTagBtn.addEventListener("click", addTag);
+    }
 }
 
 function updateTabNavigation(tabIndex,lastTabIndex) {
@@ -63,31 +67,4 @@ function updateTabNavigation(tabIndex,lastTabIndex) {
 function cycleTab(tabIndex,form) {
     currentTab = currentTab + tabIndex;
     showTab(currentTab,form);
-}
-
-function checkRequired() {
-    const tab = tabContent[currentTab];
-    const inputs = tab.querySelectorAll("input");
-    inputs.forEach(input => {
-        if (!input.checkValidity()) {
-            input.classList.add("is-invalid");
-        } else {
-            input.classList.remove("is-invalid");
-        }
-    })
-    if (!checkRepeatPassword()) return false;
-    const allInputsValid = Array.from(inputs).every(input => input.checkValidity());
-    return allInputsValid;
-}
-
-function setLiveImage(tab) {
-    const image = tab.querySelector("img");
-    const url = tab.querySelector("input[type=url]");
-    url.addEventListener("input", async () => {
-        if (url.value.startsWith("https://") && await verifyURL(url.value)) {
-            image.src = url.value;
-        } else {
-            image.src = "";
-        }  
-    })
 }

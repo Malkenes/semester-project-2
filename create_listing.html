@@ -120,7 +120,7 @@
                     <h2 class="fs-5">Add media</h2>
                     <div class="mb-3">
                       <img
-                        class="bg-grey object-fit-cover"
+                        class="bg-grey object-fit-contain"
                         height="132px"
                         width="100%"
                       />
@@ -148,7 +148,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="tab">
+                  <div class="tab tab-tags">
                     <h2 class="fs-5">Add tags</h2>
                     <div>
                       <div class="form-floating mb-3">
@@ -157,14 +157,19 @@
                           name="tag"
                           type="text"
                           id="tag-input"
+                          maxlength="40"
                           placeholder="tag"
                         />
                         <label for="tag-input">Tag</label>
                       </div>
-                      <button class="custom-btn-lg mb-3" id="add-tag">
+                      <button class="custom-btn-lg mb-3" id="tag-add">
                         Add tag
                       </button>
-                      <div class="d-flex" id="added-tags"></div>
+                      <div
+                        class="d-flex flex-wrap gap-3 mb-3"
+                        id="tags-added"
+                      ></div>
+                      <div class="form-text">Click tag to remove it</div>
                     </div>
                   </div>
                   <div class="tab">
@@ -203,10 +208,6 @@
                 </div>
               </div>
             </form>
-            <div class="d-flex gap-3 py-3">
-              <p>Already a member?</p>
-              <a href="login.html">Log in</a>
-            </div>
           </div>
         </div>
       </div>
