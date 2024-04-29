@@ -11,6 +11,10 @@ if (registerForm) {
   tab(registerForm);
   registerForm.addEventListener("submit", registerListener);
 }
+const createListingForm = document.querySelector("#create-listing-form");
+if (createListingForm) {
+  tab(createListingForm);
+}
 if (localStorage["accessToken"]) {
   updateLoggedInUserUI();
 }

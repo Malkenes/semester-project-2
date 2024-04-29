@@ -12,6 +12,7 @@ export function tab(form) {
         showTab(0, form);
         btnNext.addEventListener("click", (e) => {
             e.preventDefault();
+            if (!checkRequired()) return false;
             cycleTab(1,form);
         })
         btnPrev.addEventListener("click", (e) => {
@@ -39,7 +40,7 @@ function showTab(tabIndex, form) {
     updateTabNavigation(tabIndex, (tabContent.length -1));
 
     if (tabContent[tabIndex].querySelector("input[type=url]")) {
-        imagetest(form);
+        setLiveImage(tabContent[tabIndex]);
     }
 }
 
@@ -60,7 +61,6 @@ function updateTabNavigation(tabIndex,lastTabIndex) {
 }
 
 function cycleTab(tabIndex,form) {
-    if (!checkRequired()) return false;
     currentTab = currentTab + tabIndex;
     showTab(currentTab,form);
 }
@@ -80,28 +80,14 @@ function checkRequired() {
     return allInputsValid;
 }
 
-function imagetest(form) {
-    const banner = form.querySelector(".bg-banner");
-    const images = form.querySelectorAll("img");
-    const imageUrl = form.querySelector("#floating-avatar_url");
-    const bannerUrl = form.querySelector("#floating-banner_url");
-    imageUrl.addEventListener("input", async () => {
-        if (imageUrl.value.startsWith("https://") && await verifyURL(imageUrl.value)) {
-            images.forEach(image => {
-                image.src = imageUrl.value;
-            })    
+function setLiveImage(tab) {
+    const image = tab.querySelector("img");
+    const url = tab.querySelector("input[type=url]");
+    url.addEventListener("input", async () => {
+        if (url.value.startsWith("https://") && await verifyURL(url.value)) {
+            image.src = url.value;
         } else {
-            images.forEach(image => {
-                image.src = "";
-            })    
-        }
-    })
-    bannerUrl.addEventListener("input", async () => {
-        if (bannerUrl.value.startsWith("https://") && await verifyURL(bannerUrl.value)) {
-            banner.style.backgroundImage = "url(" + bannerUrl.value + ")";
-            banner.style.backgroundSize = "cover";
-        } else {
-            banner.style.backgroundImage = "";
-        }
+            image.src = "";
+        }  
     })
 }
