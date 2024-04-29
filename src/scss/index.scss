@@ -2,6 +2,8 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 .custom-btn {
+  color: black;
+  text-decoration: none;
   font-weight: 600;
   padding-left: 24px;
   padding-right: 16px;
@@ -11,7 +13,8 @@
   position: relative;
   border: none;
   background: rgba(217, 217, 217, 0.5);
-  div {
+  &::after {
+    content: "";
     z-index: -1;
     background: $primary;
     position: absolute;
@@ -25,6 +28,22 @@
   &:hover {
     background: rgba(217, 217, 217, 0);
   }
+  &:focus {
+    &::after {
+      box-shadow: 0 0;
+    }
+  }
+  &-lg {
+    @extend .custom-btn;
+    height: 58px;
+    width: 100%;
+  }
+  &-danger {
+    @extend .custom-btn;
+    &::after {
+      background: red;
+    }
+  }
 }
 .custom-form-control {
   @extend .form-control;
@@ -33,6 +52,11 @@
   border-radius: 0;
   &:focus {
     box-shadow: 0px 2px 0 0 rgba(248, 104, 248, 0.25);
+  }
+  &-primary {
+    @extend .custom-form-control;
+    @extend .bg-primary;
+    @extend .bg-opacity-10;
   }
 }
 footer {
