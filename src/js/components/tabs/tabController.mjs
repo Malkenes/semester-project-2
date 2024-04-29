@@ -1,64 +1,70 @@
-import { verifyURL } from "../services/api/verifyUrl.mjs";
+import { checkRepeatPassword } from "../../utils/validation.mjs";
+import { verifyURL } from "../../services/api/verifyUrl.mjs";
 
-const tabContent = document.querySelectorAll(".register-tab");
-const registerForm = document.querySelector("#register-form");
+const tabContent = document.querySelectorAll(".tab");
 const btnNext = document.querySelector("#next-btn");
 const btnPrev = document.querySelector("#prev-btn");
 const btnSubmit = document.querySelector("#submit-btn");
 let currentTab = 0;
-export function tab() {
-    if (registerForm) {
-        showTab(0);
+
+export function tab(form) {
+    if (form) {
+        showTab(0, form);
         btnNext.addEventListener("click", (e) => {
             e.preventDefault();
-            cycleTab(1);
+            cycleTab(1,form);
         })
         btnPrev.addEventListener("click", (e) => {
             e.preventDefault();
-            cycleTab(-1);
+            cycleTab(-1,form);
         })
     } else {
         return;
     }
 }
 
-function showTab(index) {
-    const tabList = registerForm.querySelectorAll(".list-group-item");
+function showTab(tabIndex, form) {
+    const tabList = form.querySelectorAll(".list-group-item");
+
     tabContent.forEach(content => {
         content.classList.add("d-none");
     })
-    tabContent[index].classList.remove("d-none");
+    tabContent[tabIndex].classList.remove("d-none");
+
     tabList.forEach(tab => {
         tab.classList.remove("active");
     })
-    tabList[index].classList.add("active");
-    if (index === 0) {
+    tabList[tabIndex].classList.add("active");
+
+    updateTabNavigation(tabIndex, (tabContent.length -1));
+
+    if (tabContent[tabIndex].querySelector("input[type=url]")) {
+        imagetest(form);
+    }
+}
+
+function updateTabNavigation(tabIndex,lastTabIndex) {
+    if (tabIndex === 0) {
         btnPrev.style.visibility = "hidden";
     } else {
         btnPrev.style.visibility= "visible";
     }
-    if (index === tabContent.length -1) {
+
+    if (tabIndex === lastTabIndex) {
         btnNext.classList.add("d-none");
         btnSubmit.classList.remove("d-none");
     } else {
         btnNext.classList.remove("d-none");
         btnSubmit.classList.add("d-none");
     }
-    if (tabContent[index].querySelector("input[type=url]")) {
-        imagetest();
-    }
 }
 
-function cycleTab(index) {
+function cycleTab(tabIndex,form) {
     if (!checkRequired()) return false;
-    currentTab = currentTab + index;
-    showTab(currentTab);
+    currentTab = currentTab + tabIndex;
+    showTab(currentTab,form);
 }
-function registerListener(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    console.log(data);
-}
+
 function checkRequired() {
     const tab = tabContent[currentTab];
     const inputs = tab.querySelectorAll("input");
@@ -74,21 +80,13 @@ function checkRequired() {
     return allInputsValid;
 }
 
-function checkRepeatPassword() {
-    const passwords = document.querySelectorAll("input[type=password]");
-    if (passwords[0].value !== passwords[1].value) {
-        passwords[1].classList.add("is-invalid");
-    }
-    return (passwords[0].value == passwords[1].value);
-}
-
-function imagetest() {
-    const banner = registerForm.querySelector(".bg-banner");
-    const images = registerForm.querySelectorAll("img");
-    const imageUrl = registerForm.querySelector("#floating-avatar_url");
-    const bannerUrl = registerForm.querySelector("#floating-banner_url");
-    imageUrl.addEventListener("input", () => {
-        if (imageUrl.value.startsWith("https://") && verifyURL(imageUrl.value)) {
+function imagetest(form) {
+    const banner = form.querySelector(".bg-banner");
+    const images = form.querySelectorAll("img");
+    const imageUrl = form.querySelector("#floating-avatar_url");
+    const bannerUrl = form.querySelector("#floating-banner_url");
+    imageUrl.addEventListener("input", async () => {
+        if (imageUrl.value.startsWith("https://") && await verifyURL(imageUrl.value)) {
             images.forEach(image => {
                 image.src = imageUrl.value;
             })    
@@ -98,8 +96,8 @@ function imagetest() {
             })    
         }
     })
-    bannerUrl.addEventListener("input", () => {
-        if (bannerUrl.value.startsWith("https://") && verifyURL(bannerUrl.value)) {
+    bannerUrl.addEventListener("input", async () => {
+        if (bannerUrl.value.startsWith("https://") && await verifyURL(bannerUrl.value)) {
             banner.style.backgroundImage = "url(" + bannerUrl.value + ")";
             banner.style.backgroundSize = "cover";
         } else {

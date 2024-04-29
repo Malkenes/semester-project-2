@@ -5,11 +5,10 @@ export function loginListener(event) {
   const data = new FormData(event.target);
   const email = data.get("email");
   const password = data.get("password");
-  console.log(email, password);
   login({ email, password });
 }
 
-export function registerListener(event) {
+export async function registerListener(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const name = data.get("name");
@@ -21,12 +20,11 @@ export function registerListener(event) {
   const bannerUrl = data.get("banner_url");
   const bannerAlt = data.get("banner_alt");
   const dataObject = { name, email, password, bio };
-  if (avatarUrl.trim() !== "" && verifyURL(avatarUrl)) {
+  if (avatarUrl.trim() !== "" && (await verifyURL(avatarUrl))) {
     dataObject.avatar = { url: avatarUrl, alt: avatarAlt };
   }
-  if (bannerUrl.trim() !== "" && verifyURL(bannerUrl)) {
+  if (bannerUrl.trim() !== "" && (await verifyURL(bannerUrl))) {
     dataObject.banner = { url: bannerUrl, alt: bannerAlt };
   }
-  console.log(dataObject);
   register(dataObject);
 }
