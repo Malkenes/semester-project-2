@@ -1,5 +1,6 @@
 import { addTag } from "../forms/addTag.mjs";
 import { checkRequired } from "../forms/formValidation.mjs";
+import { setExpirationDate } from "../forms/setExpirationDate.mjs";
 import { setLiveImage } from "../forms/setLiveImage.mjs";
 const tabContent = document.querySelectorAll(".tab");
 const btnNext = document.querySelector("#next-btn");
@@ -45,6 +46,9 @@ function showTab(tabIndex, form) {
     if (tabContent[tabIndex].classList.contains("tab-tags")) {
         const addTagBtn = document.querySelector("#tag-add");
         addTagBtn.addEventListener("click", addTag);
+    }
+    if (tabContent[tabIndex].classList.contains("tab-expiration")) {
+        setExpirationDate();
     }
 }
 

@@ -112,7 +112,6 @@
                         id="description"
                         rows="5"
                         maxlength="160"
-                        required
                       ></textarea>
                     </div>
                   </div>
@@ -172,9 +171,46 @@
                       <div class="form-text">Click tag to remove it</div>
                     </div>
                   </div>
-                  <div class="tab">
-                    <input type="date" required />
-                    <input type="time" required />
+                  <div class="tab tab-expiration">
+                    <h2 class="fs-5">Choose expiration</h2>
+                    <div class="row align-items-center mb-3">
+                      <div class="col-auto">
+                        <label for="datetime-input">Expiration date</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          class="form-control"
+                          type="datetime-local"
+                          name="datetime"
+                          id="datetime-input"
+                          required
+                        />
+                      </div>
+                      <div class="form-text">
+                        Must be set to atleast 30 minutes after the listing is
+                        created
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-days">3</span>
+                          <div>Days</div>
+                        </div>
+                      </div>
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-hours">0</span>
+                          <div>Hours</div>
+                        </div>
+                      </div>
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-minutes">0</span>
+                          <div>Min</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-sm-4 border-start border-primary">
