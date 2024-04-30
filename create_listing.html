@@ -18,7 +18,7 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | Register</title>
+    <title>Vahu | Create Listing</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <header>
@@ -87,127 +87,39 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-lg-6 offset-lg-3">
-            <h1 class="mb-3">Register</h1>
-            <form class="py-3" id="register-form">
+            <h1 class="mb-3">Create listing</h1>
+            <form class="py-3" id="create-listing-form">
               <div class="row align-items-center">
                 <div class="col">
                   <div class="tab">
+                    <h2 class="fs-5">Info</h2>
                     <div class="form-floating mb-3">
                       <input
                         class="custom-form-control-primary"
-                        name="name"
+                        name="title"
                         type="text"
-                        id="floating-name"
-                        placeholder="my_username"
-                        pattern="[a-zA-Z0-9_]+$"
+                        id="floating-title"
+                        placeholder="title"
                         required
                       />
-                      <label for="floating-name">User Name</label>
-                      <div class="form-text">
-                        must not contain punctuation symbols apart from
-                        underscore ( _ )
-                      </div>
+                      <label for="floating-title">Title</label>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="email"
-                        type="email"
-                        id="floating-email"
-                        placeholder="name@stud.noroff.no"
-                        pattern="\w+@stud\.noroff\.no"
-                        required
-                      />
-                      <label for="floating-email">Email Address</label>
-                      <div class="form-text">
-                        must be a @stud.noroff.no email address
-                      </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="password"
-                        type="password"
-                        id="floating-password"
-                        placeholder="password"
-                        minlength="8"
-                        required
-                      />
-                      <label for="floating-password">Password</label>
-                      <div class="form-text">must be atleast 8 characters</div>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="password_repeat"
-                        type="password"
-                        id="floating-password_repeat"
-                        placeholder="repeat password"
-                        minlength="8"
-                        required
-                      />
-                      <label for="floating-password_repeat"
-                        >Repeat Password</label
-                      >
-                      <div class="invalid-feedback">
-                        passwords are not the same
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab">
                     <div class="mb-3">
-                      <label class="h5" for="bio">Bio</label>
+                      <label for="description">Bio</label>
                       <textarea
                         class="custom-form-control-primary"
-                        name="bio"
-                        id="bio"
+                        name="description"
+                        id="description"
                         rows="5"
                         maxlength="160"
                       ></textarea>
                     </div>
-                    <div class="form-text">max 160 characters</div>
                   </div>
                   <div class="tab">
-                    <h2 class="fs-5">Choose Avatar</h2>
-                    <div class="p-3 mb-3 text-center">
-                      <img
-                        class="bg-white rounded-circle object-fit-cover"
-                        src="images/logo.png"
-                        alt=""
-                        width="132x"
-                        height="132px"
-                      />
-                    </div>
-                    <div>
-                      <div class="form-floating mb-3">
-                        <input
-                          class="custom-form-control-primary"
-                          name="avatar_url"
-                          type="url"
-                          id="floating-avatar_url"
-                          placeholder="url"
-                        />
-                        <label for="floating-avatar_url">Url</label>
-                      </div>
-                      <div class="form-floating mb-3">
-                        <input
-                          class="custom-form-control-primary"
-                          name="avatar_alt"
-                          type="text"
-                          id="floating-avatar_alt"
-                          placeholder="alt text"
-                        />
-                        <label for="floating-avatar_alt">Alt text</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab">
-                    <h2 class="fs-5">Choose Banner</h2>
+                    <h2 class="fs-5">Add media</h2>
                     <div class="mb-3">
                       <img
-                        class="bg-white object-fit-cover"
-                        src="images/logo.png"
-                        alt=""
+                        class="bg-grey object-fit-contain"
                         height="132px"
                         width="100%"
                       />
@@ -216,22 +128,87 @@
                       <div class="form-floating mb-3">
                         <input
                           class="custom-form-control-primary"
-                          name="banner_url"
+                          name="media_url"
                           type="url"
-                          id="floating-banner_url"
+                          id="floating-media_url"
                           placeholder="url"
                         />
-                        <label for="floating-banner_url">Url</label>
+                        <label for="floating-media_url">Url</label>
                       </div>
                       <div class="form-floating mb-3">
                         <input
                           class="custom-form-control-primary"
-                          name="banner_alt"
+                          name="media_alt"
                           type="text"
-                          id="floating-banner_alt"
+                          id="floating-media_alt"
                           placeholder="alt text"
                         />
-                        <label for="floating-banner_alt">Alt text</label>
+                        <label for="floating-media_alt">Alt text</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab tab-tags">
+                    <h2 class="fs-5">Add tags</h2>
+                    <div>
+                      <div class="form-floating mb-3">
+                        <input
+                          class="custom-form-control-primary"
+                          name="tag"
+                          type="text"
+                          id="tag-input"
+                          maxlength="40"
+                          placeholder="tag"
+                        />
+                        <label for="tag-input">Tag</label>
+                      </div>
+                      <button class="custom-btn-lg mb-3" id="tag-add">
+                        Add tag
+                      </button>
+                      <div
+                        class="d-flex flex-wrap gap-3 mb-3"
+                        id="tags-added"
+                      ></div>
+                      <div class="form-text">Click tag to remove it</div>
+                    </div>
+                  </div>
+                  <div class="tab tab-expiration">
+                    <h2 class="fs-5">Choose expiration</h2>
+                    <div class="row align-items-center mb-3">
+                      <div class="col-auto">
+                        <label for="datetime-input">Expiration date</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          class="form-control"
+                          type="datetime-local"
+                          name="datetime"
+                          id="datetime-input"
+                          required
+                        />
+                      </div>
+                      <div class="form-text">
+                        Must be set to atleast 30 minutes after the listing is
+                        created
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-days">3</span>
+                          <div>Days</div>
+                        </div>
+                      </div>
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-hours">0</span>
+                          <div>Hours</div>
+                        </div>
+                      </div>
+                      <div class="col text-center text-dark">
+                        <div class="text-center bg-primary bg-opacity-10 p-3">
+                          <span id="expiration-minutes">0</span>
+                          <div>Min</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -249,15 +226,15 @@
                         required
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Bio</div>
+                        <div class="fw-bold">Media</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Avatar</div>
+                        <div class="fw-bold">Tags</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Banner</div>
+                        <div class="fw-bold">Date</div>
                         optional
                       </li>
                     </ul>
@@ -267,10 +244,6 @@
                 </div>
               </div>
             </form>
-            <div class="d-flex gap-3 py-3">
-              <p>Already a member?</p>
-              <a href="login.html">Log in</a>
-            </div>
           </div>
         </div>
       </div>
