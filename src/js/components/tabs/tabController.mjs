@@ -1,4 +1,5 @@
 import { addTag } from "../forms/addTag.mjs";
+import { addMedia } from "../forms/addMedia.mjs";
 import { checkRequired } from "../forms/formValidation.mjs";
 import { setExpirationDate } from "../forms/setExpirationDate.mjs";
 import { setLiveImage } from "../forms/setLiveImage.mjs";
@@ -42,6 +43,10 @@ function showTab(tabIndex, form) {
 
     if (tabContent[tabIndex].querySelector("input[type=url]")) {
         setLiveImage(tabContent[tabIndex]);
+        if (tabContent[tabIndex].classList.contains("tab-media")) {
+            const addMediaBtn = document.querySelector("#media-add");
+            addMediaBtn.addEventListener("click" , addMedia)
+        }
     }
     if (tabContent[tabIndex].classList.contains("tab-tags")) {
         const addTagBtn = document.querySelector("#tag-add");

@@ -18,7 +18,7 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | Register</title>
+    <title>Vahu | Auction</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <header class="mb-3">
@@ -77,80 +77,29 @@
         </form>
       </div>
     </header>
-    <main class="flex-grow-1 d-flex align-items-center">
+    <main class="flex-grow-1">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-lg-6 offset-lg-3">
-            <h1 class="mb-3">Register</h1>
-            <form class="py-3" id="register-form">
+          <div class="col-lg-6 offset-lg-3">
+            <h1 class="mb-3">Edit Profile</h1>
+            <form class="py-3" id="edit-profile-form">
               <div class="row align-items-center">
                 <div class="col">
                   <div class="tab">
+                    <h2 class="fs-5">Info</h2>
                     <div class="form-floating mb-3">
                       <input
                         class="custom-form-control-primary"
                         name="name"
                         type="text"
                         id="floating-name"
-                        placeholder="my_username"
-                        pattern="[a-zA-Z0-9_]+$"
-                        required
+                        placeholder="name"
+                        disabled
                       />
-                      <label for="floating-name">User Name</label>
-                      <div class="form-text">
-                        must not contain punctuation symbols apart from
-                        underscore ( _ )
-                      </div>
+                      <label for="floating-title">Name</label>
                     </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="email"
-                        type="email"
-                        id="floating-email"
-                        placeholder="name@stud.noroff.no"
-                        pattern="\w+@stud\.noroff\.no"
-                        required
-                      />
-                      <label for="floating-email">Email Address</label>
-                      <div class="form-text">
-                        must be a @stud.noroff.no email address
-                      </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="password"
-                        type="password"
-                        id="floating-password"
-                        placeholder="password"
-                        minlength="8"
-                        required
-                      />
-                      <label for="floating-password">Password</label>
-                      <div class="form-text">must be atleast 8 characters</div>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="custom-form-control-primary"
-                        name="password_repeat"
-                        type="password"
-                        id="floating-password_repeat"
-                        placeholder="repeat password"
-                        minlength="8"
-                        required
-                      />
-                      <label for="floating-password_repeat"
-                        >Repeat Password</label
-                      >
-                      <div class="invalid-feedback">
-                        passwords are not the same
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab">
                     <div class="mb-3">
-                      <label class="h5" for="bio">Bio</label>
+                      <label for="bio">Bio</label>
                       <textarea
                         class="custom-form-control-primary"
                         name="bio"
@@ -159,7 +108,6 @@
                         maxlength="160"
                       ></textarea>
                     </div>
-                    <div class="form-text">max 160 characters</div>
                   </div>
                   <div class="tab">
                     <h2 class="fs-5">Choose Avatar</h2>
@@ -170,6 +118,7 @@
                         alt=""
                         width="132x"
                         height="132px"
+                        id="avatar_img"
                       />
                     </div>
                     <div>
@@ -204,6 +153,7 @@
                         alt=""
                         height="132px"
                         width="100%"
+                        id="banner_img"
                       />
                     </div>
                     <div>
@@ -239,33 +189,24 @@
                       class="list-group list-group-flush text-center d-none d-sm-flex py-5"
                     >
                       <li class="list-group-item active">
-                        <div class="fw-bold">Credentials</div>
-                        required
-                      </li>
-                      <li class="list-group-item">
-                        <div class="fw-bold">Bio</div>
+                        <div class="fw-bold">Info</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Avatar</div>
+                        <div class="fw-bold">Media</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Banner</div>
+                        <div class="fw-bold">Tags</div>
                         optional
                       </li>
                     </ul>
                     <button class="custom-btn" id="next-btn">Continue</button>
-                    <button class="custom-btn" id="submit-btn">Submit</button>
+                    <button class="custom-btn" id="submit-btn">Update</button>
                   </div>
                 </div>
               </div>
             </form>
-            <div class="invalid-feedback mb-3" id="auth-error"></div>
-            <div class="d-flex gap-3 py-3">
-              <p>Already a member?</p>
-              <a href="login.html">Log in</a>
-            </div>
           </div>
         </div>
       </div>

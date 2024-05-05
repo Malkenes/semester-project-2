@@ -18,7 +18,7 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | About</title>
+    <title>Vahu | Auction</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <header class="mb-3">
@@ -79,65 +79,30 @@
     </header>
     <main class="flex-grow-1">
       <div class="container">
-        <div class="row align-items-center mb-3">
-          <div class="col-md-6">
-            <h1>
-              <div>Welcome to Vahu</div>
-              <div>Your Premier Online Auction Destination!</div>
-            </h1>
-            <div>
-              <p>
-                At Vahu, we pride ourselves on being more than just an auction
-                website; we're a vibrant community of buyers and sellers
-                passionate about finding unique treasures and sharing them with
-                the world. Whether you're a seasoned collector, a budding
-                enthusiast, or simply someone looking for that perfect item,
-                Vahu is your go-to destination.
-              </p>
+        <div class="mb-3" id="auction-header"></div>
+        <div class="row mb-3">
+          <div class="col-lg-8">
+            <div
+              class="bg-primary bg-opacity-10 ratio custom-ratio mb-3"
+              id="auction-media"
+            ></div>
+            <div class="p-3 border-bottom border-primary">
+              <h2 class="fs-5">Description</h2>
+              <div id="auction-description"></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="bg-image"></div>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-6 col-xxl-3 p-3 bg-primary bg-opacity-10">
-            <h2 class="text-dark fs-5 mb-3">Discover unrivaled selection</h2>
-            <p>
-              Explore a vast array of categories, from rare antiques to
-              cutting-edge technology, from exquisite jewelry to one-of-a-kind
-              art pieces. With thousands of listings added daily, there's always
-              something new and exciting to discover.
-            </p>
-          </div>
-          <div class="col-md-6 col-xxl-3 p-3">
-            <h2 class="text-dark fs-5 mb-3">Bid with confidance</h2>
-            <p>
-              Our platform is designed to make bidding easy, secure, and
-              transparent. With our advanced bidding system, you can place bids
-              with confidence, knowing that you're getting the best possible
-              deal. Plus, our buyer protection program ensures that your
-              transactions are safe and secure every step of the way.
-            </p>
-          </div>
-          <div class="col-md-6 col-xxl-3 p-3 bg-primary bg-opacity-10">
-            <h2 class="text-dark fs-5 mb-3">Sell with ease</h2>
-            <p>
-              Whether you're a seasoned seller or new to the game, Vahu makes it
-              easy to list and sell your items. Simply snap a few photos, write
-              a compelling description, and set your price. Our intuitive
-              platform will guide you through the selling process, helping you
-              reach millions of potential buyers around the globe.
-            </p>
-          </div>
-          <div class="col-md-6 col-xxl-3 p-3">
-            <h2 class="text-dark fs-5 mb-3">Start exploring today</h2>
-            <p>
-              Whether you're hunting for treasures or looking to sell your own,
-              Vahu is your ultimate destination for all things extraordinary.
-              Join us today and start exploring the world of online auctions
-              like never before!
-            </p>
+          <div class="col-lg-4">
+            <div class="bg-primary bg-opacity-50">
+              <div class="p-3 d-flex flex-wrap">
+                <div class="flex-grow-1 text-nowrap">
+                  <h2 class="fs-5">Auction ends</h2>
+                  <p id="auction-expiration_date"></p>
+                </div>
+                <div id="auction-expiration_countdown"></div>
+              </div>
+            </div>
+            <div class="bg-primary bg-opacity-25" id="auction-bid"></div>
+            <div class="p-3 bg-primary bg-opacity-25" id="auction-seller"></div>
           </div>
         </div>
       </div>

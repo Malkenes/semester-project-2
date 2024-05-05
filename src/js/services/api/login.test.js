@@ -1,4 +1,4 @@
-import { login } from ".";
+import { login } from "./login.js";
 
 global.localStorage = {
   setItem: jest.fn(),

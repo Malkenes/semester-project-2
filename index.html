@@ -21,7 +21,7 @@
     <title>Vahu | Home</title>
   </head>
   <body>
-    <header>
+    <header class="mb-3">
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
@@ -43,23 +43,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-end"
+            class="collapse navbar-collapse justify-content-between text-center"
             id="navbarSupportedContent"
           >
-            <form class="d-flex me-2 my-3">
-              <div class="input-group">
-                <button class="btn position-absolute z-3" type="submit">
-                  <i class="fas fa-magnifying-glass"></i>
-                </button>
-                <input
-                  class="custom-form-control z-1 ps-5"
-                  placeholder="search"
-                  type="search"
-                  name=""
-                  id=""
-                />
-              </div>
-            </form>
             <ul class="navbar-nav me-2 h5 my-3">
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About</a>
@@ -68,19 +54,36 @@
                 <a class="nav-link" href="contact.html">Contact</a>
               </li>
             </ul>
-            <div class="d-md-none bg-primary bg-opacity-10 my-3">
-              <div class="profile-nav"></div>
-            </div>
-            <div class="me-2 d-flex justify-content-center my-3">
-              <a href="login.html" class="custom-btn" id="logged-in">
-                LOG IN
-              </a>
+            <div id="logged-in">
+              <a href="login.html" class="custom-btn"> LOG IN </a>
             </div>
           </div>
         </div>
       </nav>
-      <div class="container-fluid d-none d-md-block bg-primary bg-opacity-10">
-        <div class="profile-nav"></div>
+      <div class="p-3 bg-primary-subtle">
+        <div class="mx-auto position-relative" style="max-width: 500px">
+          <form class="z-4">
+            <div class="input-group">
+              <button class="btn position-absolute z-3" type="submit">
+                <i class="fas fa-magnifying-glass"></i>
+              </button>
+              <input
+                class="custom-form-control z-1 ps-5"
+                placeholder="search"
+                type="search"
+                name=""
+                id="search-input"
+              />
+            </div>
+          </form>
+          <div class="position-absolute w-100 z-3">
+            <div class="collapse" id="live-search">
+              <div class="bg-white pb-4 shadow-lg rounded-bottom-3">
+                <div id="search-results"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
     <main>
