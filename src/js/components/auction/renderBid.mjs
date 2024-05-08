@@ -35,7 +35,7 @@ export function renderBid(bids) {
     }
     return `
         <div class="p-3 border-bottom border-primary">
-            <a class="float-end" data-bs-toggle="collapse" href="#all-bids-collapse" aria-expanded="false" aria-controls="all-bids-collapse">View all bids</a>
+            ${renderAllbids(bids)}
             <h2 class="fs-5">Highest bid</h2>
             ${string}
             <div class="collapse" id="all-bids-collapse">
@@ -43,19 +43,39 @@ export function renderBid(bids) {
             </div>
         </div>
         <div class="p-3 border-bottom border-primary">
-            <label for="input-bid" class="h5">Place bid</label>
-            <form id="bid-form">
-                <div class="d-flex">
-                    <div class="input-group" style="max-width: 200px">
-                        <input class="form-control" type="text" id="input-bid" name="bid" value="${highestBid + 10}">
-                        <img class="input-group-text" src="/images/credit.png" height="40px">
-                    </div>
-                    <button class="custom-btn">Bid</button>
-                </div>
-                <div class="form-text">
-                    Bids must be at least 10 credit higher than the current highest bid to be considered valid
-                </div>
-            </form>
+            ${renderBidInput(highestBid)}
         </div>
     `;
+}
+function renderAllbids(bids) {
+    if (bids.length > 1) {
+        return `<a class="float-end" data-bs-toggle="collapse" href="#all-bids-collapse" aria-expanded="false" aria-controls="all-bids-collapse">View all bids</a>`;
+    } else {
+        return "";
+    }
+}
+function renderBidInput(highestBid) {
+    if(!localStorage["accessToken"]) {
+        return `
+        <h2 class="fs-5 mb-3">Login to place bid</h2>
+        <a href ="/login.html" class="custom-btn">
+            Login
+        </a>`;
+    } else {
+        return `
+        <label for="input-bid" class="h5">Place bid</label>
+        <form id="bid-form">
+            <div class="d-flex">
+                <div class="input-group" style="max-width: 200px">
+                    <input class="form-control" type="text" id="input-bid" name="bid" value="${highestBid + 10}">
+                    <img class="input-group-text" src="/images/credit.png" height="40px">
+                </div>
+                <button class="custom-btn">Bid</button>
+            </div>
+            <div class="form-text">
+                Bids must be at least 10 credit higher than the current highest bid to be considered valid
+            </div>
+        </form>
+        `;
+    }
 }

@@ -1,4 +1,4 @@
-import { login } from "../api/login.js";
+import { login } from "../api/login.mjs";
 export function loginListener(e) {
     e.preventDefault();
     const data = new FormData(e.target);

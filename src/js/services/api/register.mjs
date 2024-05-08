@@ -1,4 +1,4 @@
-import { login } from "./login.js";
+import { login } from "./login.mjs";
 export async function register(data) {
   const options = {
     method: "post",

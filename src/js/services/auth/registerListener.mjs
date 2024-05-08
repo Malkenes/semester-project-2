@@ -1,4 +1,4 @@
-import { register } from "../api/register.js";
+import { register } from "../api/register.mjs";
 import { verifyURL } from "../api/verifyUrl.mjs";
 
 export async function registerListener(event) {

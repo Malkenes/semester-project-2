@@ -1,3 +1,5 @@
+import { renderExpiration } from "../auction/renderExpiration.mjs";
+
 export function renderCards(data) {
     const cardsHTML = data.map(card => {
         return `
@@ -7,7 +9,7 @@ export function renderCards(data) {
                         <div class="position-absolute bottom-0 end-0 p-3">
                             <div class="bg-white">
                                 <div class="bg-primary bg-opacity-25">
-                                    hei
+                                    ${renderExpiration(new Date(card.endsAt))}
                                 </div>
                             </div>
                         </div>
