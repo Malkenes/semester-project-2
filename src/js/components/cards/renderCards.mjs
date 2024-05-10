@@ -38,7 +38,7 @@ function cardImage(media) {
 }
 function highestBid(bids) {
     if (bids.length > 0) {
-        bids.reverse();
+        bids.sort((a,b) => b.amount - a.amount);
         return `<div class="bid-sm">${bids[0].amount}</div>`
     } else {
         return "<div class=fs-4>no bids</div>";
@@ -53,7 +53,7 @@ export function renderTags(data) {
                 <div class="position-absolute p-3 bg-primary bg-opacity-75 rounded-end-5">
                     ${tag.tag}
                 </div>
-                <a href="/search.html?tag=${tag.tag}">
+                <a href="/search.html?value=${tag.tag}&search=Tag">
                     <img class="object-fit-cover w-100" height="200px" src="${tag.media.url}" alt="${tag.media.alt}">
                 </a>
             </div>
@@ -61,4 +61,32 @@ export function renderTags(data) {
         `;
     });
     return tagsHTML.join("");
+}
+
+export function renderProfileCards(data) {
+    const cardsHTML = data.map(card => {
+        return `
+        <div class="col-md-6 col-lg-4 mb-3">
+            <a href="/profile.html?name=${card.name}" class="card text-decoration-none">
+            <div style="background-image: url(${card.banner.url})">
+                <div class="d-flex justify-content-around align-items-center h-200">
+                    <img class="rounded-circle" src="${card.avatar.url}" height="96px" width="96px">
+                    <div class="bg-white bg-opacity-50 p-3 rounded">
+                        <h1>${card.name}</h1>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row h-200 align-items-center">
+                    <div class="col-8 d-flex justify-content-center">
+                        <div>${card.bio}</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        ` 
+    });
+    return cardsHTML.join("");
+
 }

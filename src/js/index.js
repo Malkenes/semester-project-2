@@ -16,8 +16,10 @@ import {
   editProfileListener,
   fillProfileEditForm,
 } from "./services/editProfile.mjs";
+import { displaySearch } from "./services/searchService.mjs";
+import { isLoggedIn } from "./utils/isLoggedIn.mjs";
 
-if (localStorage["accessToken"]) {
+if (isLoggedIn()) {
   updateLoggedInUserUI();
 }
 
@@ -65,7 +67,9 @@ if (pathName === "/edit_profile.html") {
   fillProfileEditForm(editProfileForm);
   editProfileForm.addEventListener("submit", editProfileListener);
 }
-
+if (pathName === "/search.html") {
+  displaySearch();
+}
 async function initilizseHome() {
   try {
     const cardsData = await getAllActiveListings();
@@ -205,22 +209,17 @@ async function getPopularMedia(tags) {
   }
   return mediaArray;
 }
-/*
-const searchInput = document.querySelector("#search-input");
-const liveSearch = document.querySelector("#live-search");
-const searchResults = document.querySelector("#search-results");
-//const searchCollapse = new bootstrap.Collapse(liveSearch, {toggle: false});
-searchInput.addEventListener("focusin", () => {
-  searchCollapse.show();
-})
-searchInput.addEventListener("focusout", () => {
-  searchCollapse.hide();
-})
 
-searchInput.addEventListener("input", (e) => {
-  if (e.target.value.length > 2) {
-    searchResults.innerHTML = e.target.value;
+const searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(e.target);
+  const data = new FormData(e.target);
+  const search = data.get("search");
+  const value = data.get("value");
+  if (value === "") {
+    window.location.href = "/search.html";
   } else {
-    searchResults.innerHTML = "";
+    window.location.href = "/search.html?search=" + search + "&value=" + value;
   }
-})*/
+});
