@@ -3,7 +3,7 @@ export function displayLoadingIndicator() {
     main.classList.add("position-relative");
     const loader = document.createElement("div");
     loader.id = "loader";
-    loader.classList.add("position-absolute","bg-white", "h-100", "w-100", "top-0");
+    loader.classList.add("position-absolute","bg-white", "h-100", "w-100", "top-0", "z-3");
     const textContainer = document.createElement("div");
     textContainer.id = "inside-loader";
     textContainer.classList.add("position-fixed", "top-50", "start-50", "translate-middle");

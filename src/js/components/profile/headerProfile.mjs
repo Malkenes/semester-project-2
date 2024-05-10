@@ -1,6 +1,11 @@
 import { getProfile } from "../../services/api/profile.mjs";
+import { isLoggedIn } from "../../utils/isLoggedIn.mjs";
 export async function updateLoggedInUserUI() {
     const loggedIn = document.querySelector("#logged-in");
+    if (!isLoggedIn()) {
+      loggedIn.innerHTML = `<a href="login.html" class="custom-btn"> LOG IN </a>`
+    }
+    else {
     const profile = await getProfile(localStorage.getItem("name"));
     loggedIn.innerHTML = 
     `
@@ -25,4 +30,5 @@ export async function updateLoggedInUserUI() {
       localStorage.clear();
       window.location.href = "/";
     });
+    }
   };

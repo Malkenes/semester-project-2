@@ -21,7 +21,7 @@
     <title>Vahu | Auction</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
-    <header class="mb-3">
+    <header>
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
@@ -54,25 +54,35 @@
                 <a class="nav-link" href="contact.html">Contact</a>
               </li>
             </ul>
-            <div id="logged-in">
-              <a href="login.html" class="custom-btn"> LOG IN </a>
-            </div>
+            <div id="logged-in"></div>
           </div>
         </div>
       </nav>
       <div class="p-3 bg-primary-subtle">
-        <form class="mx-auto" style="max-width: 500px">
+        <form class="mx-auto" id="search-form" style="max-width: 500px">
           <div class="input-group">
             <button class="btn position-absolute z-3" type="submit">
               <i class="fas fa-magnifying-glass"></i>
+              <span class="visually-hidden">Search</span>
             </button>
             <input
               class="custom-form-control z-1 ps-5"
               placeholder="search"
               type="search"
-              name=""
-              id=""
+              name="value"
+              aria-label="search value"
             />
+            <div>
+              <select
+                class="ms-1 form-select custom-form-control"
+                name="search"
+                aria-label="select search type"
+              >
+                <option selected value="Listing">Listing</option>
+                <option value="Profile">Profile</option>
+                <option value="Tag">Tag</option>
+              </select>
+            </div>
           </div>
         </form>
       </div>

@@ -17,11 +17,8 @@ import {
   fillProfileEditForm,
 } from "./services/editProfile.mjs";
 import { displaySearch } from "./services/searchService.mjs";
-import { isLoggedIn } from "./utils/isLoggedIn.mjs";
 
-if (isLoggedIn()) {
-  updateLoggedInUserUI();
-}
+updateLoggedInUserUI();
 
 const pathName = window.location.pathname;
 if (pathName === "/auction.html") {
