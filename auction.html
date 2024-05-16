@@ -18,10 +18,10 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | Contact</title>
+    <title>Vahu | Auction</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
-    <header>
+    <header class="mb-3">
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
@@ -88,94 +88,31 @@
       </div>
     </header>
     <main class="flex-grow-1">
-      <div
-        class="bg-image"
-        style="background-image: url(/images/office.jpg)"
-      ></div>
       <div class="container">
-        <div class="row text-center py-5">
-          <div class="col-md-6 offset-md-3">
-            <h1>Get in touch with Vahu</h1>
-            <p>
-              Thank you for your interest in Vahu - your premier online auction
-              destination. We're here to assist you in any way we can. Whether
-              you have a question, need assistance, or just want to share
-              feedback, we're all ears.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="p-3 bg-primary bg-opacity-10">
-              <h2 class="text-dark fs-5 mb-3">Customer support</h2>
-              <p>
-                Our dedicated customer support team is available to assist you
-                with any inquiries or issues you may have. Feel free to reach
-                out to us via email at support@vahu.com or through our
-                convenient online contact form below.
-              </p>
-            </div>
-            <div class="p-3">
-              <h2 class="text-dark fs-5 mb-3">Seller support</h2>
-              <p>
-                If you're a seller looking for assistance with listing your
-                items or managing your account, our seller support team is here
-                to help. Contact us at seller-support@vahu.com for personalized
-                assistance tailored to your needs.
-              </p>
-            </div>
-            <div class="p-3 bg-primary bg-opacity-10">
-              <h2 class="text-dark fs-5 mb-3">Feedback and suggestions</h2>
-              <p>
-                Feedback and Suggestions: We value your feedback and suggestions
-                as they help us improve our platform and better serve our
-                community. If you have any ideas, comments, or suggestions you'd
-                like to share, please don't hesitate to reach out to us at
-                feedback@vahu.com. Your input is invaluable to us!
-              </p>
+        <div class="mb-3" id="auction-header"></div>
+        <div class="row mb-3">
+          <div class="col-lg-8">
+            <div
+              class="bg-primary bg-opacity-10 ratio custom-ratio mb-3"
+              id="auction-media"
+            ></div>
+            <div class="p-3 border-bottom border-primary">
+              <h2 class="fs-5">Description</h2>
+              <div id="auction-description"></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <form class="d-flex flex-column p-3 h-100" action="">
-              <h2 class="fs-5 mb-3">Contact form</h2>
-              <div
-                class="flex-grow-1 d-flex flex-column justify-content-center"
-              >
-                <div class="form-floating mb-3">
-                  <input
-                    class="custom-form-control-primary"
-                    name="email"
-                    type="email"
-                    id="floating-email"
-                    placeholder="name@stud.noroff.no"
-                    pattern="\w+@stud\.noroff\.no"
-                    required
-                  />
-                  <label for="floating-email">Email address</label>
+          <div class="col-lg-4">
+            <div class="bg-primary bg-opacity-50">
+              <div class="p-3 d-flex flex-wrap">
+                <div class="flex-grow-1 text-nowrap">
+                  <h2 class="fs-5">Auction ends</h2>
+                  <p id="auction-expiration_date"></p>
                 </div>
-                <div class="form-floating mb-3">
-                  <input
-                    class="custom-form-control-primary"
-                    name="subject"
-                    type="text"
-                    id="floating-subject"
-                    placeholder="subject"
-                    required
-                  />
-                  <label for="floating-subject">Subject</label>
-                </div>
-                <div class="mb-3">
-                  <label for="message">Message</label>
-                  <textarea
-                    class="custom-form-control-primary"
-                    name="message"
-                    id="message"
-                    rows="8"
-                  ></textarea>
-                </div>
-                <button class="custom-btn-lg mb-3">Send</button>
+                <div id="auction-expiration_countdown"></div>
               </div>
-            </form>
+            </div>
+            <div class="bg-primary bg-opacity-25" id="auction-bid"></div>
+            <div class="p-3 bg-primary bg-opacity-25" id="auction-seller"></div>
           </div>
         </div>
       </div>

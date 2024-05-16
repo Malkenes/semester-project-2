@@ -14,7 +14,7 @@ export function addTag(e) {
     tagInput.value = "";
 }
 
-function createTagElement(tag) {
+export function createTagElement(tag) {
     const tagElement = document.createElement("span");
     tagElement.textContent = tag;
     tagElement.classList.add("tag");

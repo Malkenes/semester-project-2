@@ -8,6 +8,7 @@
     "test": "npm run test-unit && npm run test-e2e-cli",
     "test-unit": "jest",
     "test-e2e-cli": "cypress run",
+    "test-e2e": "cypress open",
     "build": "sass src/scss:dist/css",
     "watch": "sass src/scss:dist/css --watch",
     "start": "live-server",

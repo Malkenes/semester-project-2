@@ -18,7 +18,7 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | Create Listing</title>
+    <title>Vahu | Auction</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <header class="mb-3">
@@ -87,140 +87,105 @@
         </form>
       </div>
     </header>
-    <main class="flex-grow-1 d-flex align-items-center">
+    <main class="flex-grow-1">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-lg-6 offset-lg-3">
-            <h1 class="mb-3">Create listing</h1>
-            <form class="py-3" id="create-listing-form">
+          <div class="col-lg-6 offset-lg-3">
+            <h1 class="mb-3">Edit Profile</h1>
+            <form class="py-3" id="edit-profile-form">
               <div class="row align-items-center">
                 <div class="col">
                   <div class="tab">
-                    <h2 class="fs-5">Credentials</h2>
+                    <h2 class="fs-5">Info</h2>
                     <div class="form-floating mb-3">
                       <input
                         class="custom-form-control-primary"
-                        name="title"
+                        name="name"
                         type="text"
-                        id="floating-title"
-                        placeholder="title"
-                        required
+                        id="floating-name"
+                        placeholder="name"
+                        disabled
                       />
-                      <label for="floating-title">Title</label>
+                      <label for="floating-title">Name</label>
                     </div>
                     <div class="mb-3">
-                      <label for="description">Description</label>
+                      <label for="bio">Bio</label>
                       <textarea
                         class="custom-form-control-primary"
-                        name="description"
-                        id="description"
+                        name="bio"
+                        id="bio"
                         rows="5"
                         maxlength="160"
                       ></textarea>
                     </div>
                   </div>
-                  <div class="tab tab-media">
-                    <h2 class="fs-5">Add media</h2>
-                    <div class="mb-3">
+                  <div class="tab">
+                    <h2 class="fs-5">Choose Avatar</h2>
+                    <div class="p-3 mb-3 text-center">
                       <img
-                        class="bg-grey object-fit-contain"
+                        class="bg-white rounded-circle object-fit-cover"
+                        src="images/logo.png"
+                        alt=""
+                        width="132x"
                         height="132px"
-                        width="100%"
+                        id="avatar_img"
                       />
                     </div>
                     <div>
                       <div class="form-floating mb-3">
                         <input
                           class="custom-form-control-primary"
-                          name="media_url"
+                          name="avatar_url"
                           type="url"
-                          id="floating-media_url"
+                          id="floating-avatar_url"
                           placeholder="url"
                         />
-                        <label for="floating-media_url">Url</label>
+                        <label for="floating-avatar_url">Url</label>
                       </div>
                       <div class="form-floating mb-3">
                         <input
                           class="custom-form-control-primary"
-                          name="media_alt"
+                          name="avatar_alt"
                           type="text"
-                          id="floating-media_alt"
+                          id="floating-avatar_alt"
                           placeholder="alt text"
                         />
-                        <label for="floating-media_alt">Alt text</label>
+                        <label for="floating-avatar_alt">Alt text</label>
                       </div>
-                      <button class="custom-btn-lg mb-3" id="media-add">
-                        Add media
-                      </button>
-                      <div
-                        class="d-flex flex-wrap gap-3 mb-3"
-                        id="media-added"
-                      ></div>
-                      <div class="form-text">Click image to remove it</div>
                     </div>
                   </div>
-                  <div class="tab tab-tags">
-                    <h2 class="fs-5">Add tags</h2>
+                  <div class="tab">
+                    <h2 class="fs-5">Choose Banner</h2>
+                    <div class="mb-3">
+                      <img
+                        class="bg-white object-fit-cover"
+                        src="images/logo.png"
+                        alt=""
+                        height="132px"
+                        width="100%"
+                        id="banner_img"
+                      />
+                    </div>
                     <div>
                       <div class="form-floating mb-3">
                         <input
                           class="custom-form-control-primary"
-                          name="tag"
-                          type="text"
-                          id="tag-input"
-                          maxlength="40"
-                          placeholder="tag"
+                          name="banner_url"
+                          type="url"
+                          id="floating-banner_url"
+                          placeholder="url"
                         />
-                        <label for="tag-input">Tag</label>
+                        <label for="floating-banner_url">Url</label>
                       </div>
-                      <button class="custom-btn-lg mb-3" id="tag-add">
-                        Add tag
-                      </button>
-                      <div
-                        class="d-flex flex-wrap gap-3 mb-3"
-                        id="tags-added"
-                      ></div>
-                      <div class="form-text">Click tag to remove it</div>
-                    </div>
-                  </div>
-                  <div class="tab tab-expiration">
-                    <h2 class="fs-5">Choose expiration</h2>
-                    <div class="row align-items-center mb-3">
-                      <div class="col-auto">
-                        <label for="datetime-input">Expiration date</label>
-                      </div>
-                      <div class="col-auto">
+                      <div class="form-floating mb-3">
                         <input
-                          class="form-control"
-                          type="datetime-local"
-                          name="datetime"
-                          id="datetime-input"
-                          required
+                          class="custom-form-control-primary"
+                          name="banner_alt"
+                          type="text"
+                          id="floating-banner_alt"
+                          placeholder="alt text"
                         />
-                      </div>
-                      <div class="form-text">
-                        Must be set to atleast 30 minutes after the listing is
-                        created
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-days">3</span>
-                          <div>Days</div>
-                        </div>
-                      </div>
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-hours">0</span>
-                          <div>Hours</div>
-                        </div>
-                      </div>
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-minutes">0</span>
-                          <div>Min</div>
-                        </div>
+                        <label for="floating-banner_alt">Alt text</label>
                       </div>
                     </div>
                   </div>
@@ -234,24 +199,20 @@
                       class="list-group list-group-flush text-center d-none d-sm-flex py-5"
                     >
                       <li class="list-group-item active">
-                        <div class="fw-bold">Credentials</div>
-                        required
-                      </li>
-                      <li class="list-group-item">
-                        <div class="fw-bold">Media</div>
+                        <div class="fw-bold">Info</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Tags</div>
+                        <div class="fw-bold">Avatar</div>
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Expiration</div>
-                        required
+                        <div class="fw-bold">Banner</div>
+                        optional
                       </li>
                     </ul>
                     <button class="custom-btn" id="next-btn">Continue</button>
-                    <button class="custom-btn" id="submit-btn">Submit</button>
+                    <button class="custom-btn" id="submit-btn">Update</button>
                   </div>
                 </div>
               </div>

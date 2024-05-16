@@ -1,4 +1,4 @@
-import { login } from ".";
+import { login } from "./login.mjs";
 
 global.localStorage = {
   setItem: jest.fn(),
@@ -10,14 +10,6 @@ global.fetch = jest.fn().mockResolvedValue({
     .fn()
     .mockResolvedValue({ data: { accessToken: "mockAccessToken" } }),
 });
-
-global.document = {
-  querySelector: jest.fn((selector) => {
-    if (selector === "#auth-error") {
-      return { style: { display: "block" } };
-    }
-  }),
-};
 
 describe("login function", () => {
   it("should login sucessfully and set accessToken in localStorage", async () => {
@@ -40,9 +32,10 @@ describe("login function", () => {
     global.fetch.mockImplementationOnce(() => {
       return {
         ok: false,
+        json: () =>
+          Promise.resolve({ errors: [{ message: "Mock error message" }] }),
       };
     });
-    await login({});
-    expect(document.querySelector("#auth-error").style.display).toBe("block");
+    await expect(login({})).rejects.toThrow("Mock error message");
   });
 });

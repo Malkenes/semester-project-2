@@ -18,7 +18,7 @@
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-    <title>Vahu | Create Listing</title>
+    <title>Vahu | Edit listing</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <header class="mb-3">
@@ -87,16 +87,16 @@
         </form>
       </div>
     </header>
-    <main class="flex-grow-1 d-flex align-items-center">
+    <main class="flex-grow-1">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-lg-6 offset-lg-3">
-            <h1 class="mb-3">Create listing</h1>
-            <form class="py-3" id="create-listing-form">
+          <div class="col-lg-6 offset-lg-3">
+            <h1 class="mb-3">Edit listing</h1>
+            <form class="py-3" id="edit-listing-form">
               <div class="row align-items-center">
                 <div class="col">
                   <div class="tab">
-                    <h2 class="fs-5">Credentials</h2>
+                    <h2 class="fs-5">Info</h2>
                     <div class="form-floating mb-3">
                       <input
                         class="custom-form-control-primary"
@@ -104,7 +104,6 @@
                         type="text"
                         id="floating-title"
                         placeholder="title"
-                        required
                       />
                       <label for="floating-title">Title</label>
                     </div>
@@ -183,47 +182,6 @@
                       <div class="form-text">Click tag to remove it</div>
                     </div>
                   </div>
-                  <div class="tab tab-expiration">
-                    <h2 class="fs-5">Choose expiration</h2>
-                    <div class="row align-items-center mb-3">
-                      <div class="col-auto">
-                        <label for="datetime-input">Expiration date</label>
-                      </div>
-                      <div class="col-auto">
-                        <input
-                          class="form-control"
-                          type="datetime-local"
-                          name="datetime"
-                          id="datetime-input"
-                          required
-                        />
-                      </div>
-                      <div class="form-text">
-                        Must be set to atleast 30 minutes after the listing is
-                        created
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-days">3</span>
-                          <div>Days</div>
-                        </div>
-                      </div>
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-hours">0</span>
-                          <div>Hours</div>
-                        </div>
-                      </div>
-                      <div class="col text-center text-dark">
-                        <div class="text-center bg-primary bg-opacity-10 p-3">
-                          <span id="expiration-minutes">0</span>
-                          <div>Min</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="col-sm-4 border-start border-primary">
                   <div
@@ -234,8 +192,8 @@
                       class="list-group list-group-flush text-center d-none d-sm-flex py-5"
                     >
                       <li class="list-group-item active">
-                        <div class="fw-bold">Credentials</div>
-                        required
+                        <div class="fw-bold">Info</div>
+                        optional
                       </li>
                       <li class="list-group-item">
                         <div class="fw-bold">Media</div>
@@ -245,13 +203,9 @@
                         <div class="fw-bold">Tags</div>
                         optional
                       </li>
-                      <li class="list-group-item">
-                        <div class="fw-bold">Expiration</div>
-                        required
-                      </li>
                     </ul>
                     <button class="custom-btn" id="next-btn">Continue</button>
-                    <button class="custom-btn" id="submit-btn">Submit</button>
+                    <button class="custom-btn" id="submit-btn">Update</button>
                   </div>
                 </div>
               </div>
