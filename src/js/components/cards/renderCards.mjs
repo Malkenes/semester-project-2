@@ -47,6 +47,7 @@ function highestBid(bids) {
 
 export function renderTags(data) {
     const tagsHTML = data.map(tag => {
+        const randomInt = Math.floor(Math.random() * tag.media.length);
         return `
         <div class="col-sm-6 col-lg-3 mb-3">
             <div class="position-relative">
@@ -54,7 +55,7 @@ export function renderTags(data) {
                     ${tag.tag}
                 </div>
                 <a href="/search.html?value=${tag.tag}&search=Tag">
-                    <img class="object-fit-cover w-100" height="200px" src="${tag.media.url}" alt="${tag.media.alt}">
+                    <img class="object-fit-cover w-100" height="200px" src="${tag.media[randomInt].url}" alt="${tag.media[randomInt].alt}">
                 </a>
             </div>
         </div>

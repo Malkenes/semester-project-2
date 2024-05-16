@@ -1,38 +1,37 @@
 import { API_BASE,API_KEY } from "../../constants.mjs";
 export async function getProfile(name) {
-    try {
-      const options = {
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "X-Noroff-API-Key": API_KEY,
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await fetch(API_BASE + "auction/profiles/" + name,options);
-      const result = await response.json();
-      return result.data;
-    } catch (error) {
-      console.log(error);
-    } 
+  const options = {
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      "X-Noroff-API-Key": API_KEY,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(API_BASE + "auction/profiles/" + name,options);
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.errors[0].message);
+  } else {
+    return result.data;
+  }
 }
 
 export async function profileListings(name) {
-  try {
-    const options = {
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        "X-Noroff-API-Key": API_KEY,
-        "Content-Type": "application/json",
-      },
-    };
-  
-    const response = await fetch(API_BASE + "auction/profiles/" + name + "/listings?_bids=true",options);
-    const result = await response.json();
+  const options = {
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      "X-Noroff-API-Key": API_KEY,
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(API_BASE + "auction/profiles/" + name + "/listings?_bids=true",options);
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.errors[0].message);
+  } else {
     return result.data;
-  } catch (error) {
-    console.log(error);
   }
 }
 export async function editProfile(data,name) {
@@ -45,12 +44,10 @@ export async function editProfile(data,name) {
     },
     body: JSON.stringify(data)
   };
-  try {
-    const response = await fetch(API_BASE + "auction/profiles/" + name,options);
-    if (response.ok) {
-      window.location.href = "/profile.html?name=" + name;
-    }
-  } catch (error) {
-    console.log(error);
+  const response = await fetch(API_BASE + "auction/profiles/" + name,options);
+  if (!response.ok) {
+    throw new Error("something went wrong");
+  } else {
+    window.location.href = "/profile.html?name=" + name;
   }
 }

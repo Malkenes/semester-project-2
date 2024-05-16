@@ -41,9 +41,16 @@ function createPaginationBar(currentPage,totalPages) {
                 container.append(listItem);    
             }
         } else {
-            for (let i = currentPage - 2; i <= currentPage + 2; i++) {
-                const listItem = createPaginationItem(i);
-                container.append(listItem);
+            if (totalPages - 2 < currentPage ) {
+                for (let i = totalPages - 4; i <= totalPages; i++) {
+                    const listItem = createPaginationItem(i);
+                    container.append(listItem);    
+                }
+            } else {
+                for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+                    const listItem = createPaginationItem(i);
+                    container.append(listItem);
+                }
             }     
         }
     }

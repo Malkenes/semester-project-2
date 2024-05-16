@@ -21,7 +21,7 @@
     <title>Vahu | Create Listing</title>
   </head>
   <body class="min-vh-100 d-flex flex-column">
-    <header>
+    <header class="mb-3">
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
@@ -96,7 +96,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <div class="tab">
-                    <h2 class="fs-5">Info</h2>
+                    <h2 class="fs-5">Credentials</h2>
                     <div class="form-floating mb-3">
                       <input
                         class="custom-form-control-primary"
@@ -109,7 +109,7 @@
                       <label for="floating-title">Title</label>
                     </div>
                     <div class="mb-3">
-                      <label for="description">Bio</label>
+                      <label for="description">Description</label>
                       <textarea
                         class="custom-form-control-primary"
                         name="description"
@@ -246,8 +246,8 @@
                         optional
                       </li>
                       <li class="list-group-item">
-                        <div class="fw-bold">Date</div>
-                        optional
+                        <div class="fw-bold">Expiration</div>
+                        required
                       </li>
                     </ul>
                     <button class="custom-btn" id="next-btn">Continue</button>

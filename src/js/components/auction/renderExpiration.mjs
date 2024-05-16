@@ -1,7 +1,20 @@
+export function displayExpiration(endsAt) {
+    const expirationCountdown = document.querySelector("#auction-expiration_countdown");
+    expirationCountdown.innerHTML = renderExpiration(endsAt);
+
+    const date = new Date(endsAt);
+    const currentDate = new Date(); 
+    const diff = (date.getTime() - currentDate.getTime());
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (days === 0) {
+        setInterval( () =>updateCountdown(date),1000);
+    }
+}
 export function renderCountDown(endsAt) {
     const [days,hours,minutes,seconds] = timePassed(endsAt);
     return `
-        <div class="d-flex gap-1 text-center">
+        <div class="d-flex gap-1 text-center text-dark">
             <div class="p-2 bg-white bg-primary bg-opacity-25 rect">
                 <div>${hours}</div>
                 <span>Hours</span>
@@ -18,7 +31,7 @@ export function renderCountDown(endsAt) {
         `    
 }
 export function renderExpiration(endsAt) {
-    const expirationHTML = `<div class="bg-white bg-primary bg-opacity-25 d-flex align-items-center justify-content-center p-3">`
+    const expirationHTML = `<div class="bg-white bg-primary text-dark bg-opacity-25 d-flex align-items-center justify-content-center p-3">`
     const currentDate = new Date();
     const [days,hours,minutes,seconds] = timePassed(endsAt);
     if (currentDate.getTime() > endsAt.getTime()) {
@@ -43,4 +56,9 @@ function timePassed(date) {
     const seconds = Math.floor((timeDifference % (1000 * 60)) / (1000));
 
     return [days,hours,minutes,seconds];
+}
+
+function updateCountdown(endsAt) {
+    const expirationCountdown = document.querySelector("#auction-expiration_countdown");
+    expirationCountdown.innerHTML = renderCountDown(endsAt);
 }

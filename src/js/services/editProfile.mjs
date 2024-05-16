@@ -1,3 +1,4 @@
+import { clearLoadingIndicator, displayErrorMessage, displayLoadingIndicator } from "../utils/displayLoadingIndicator.mjs";
 import { editProfile, getProfile } from "./api/profile.mjs";
 import { verifyURL } from "./api/verifyUrl.mjs";
 const queryString = document.location.search;
@@ -5,6 +6,8 @@ const params = new URLSearchParams(queryString);
 const postParam = params.get("name");
 
 export async function fillProfileEditForm(form) {
+  try {
+    displayLoadingIndicator();
     const profileData = await getProfile(postParam);
     form.querySelector("#floating-name").value = profileData.name;
     form.querySelector("#bio").value = profileData.bio;
@@ -14,6 +17,10 @@ export async function fillProfileEditForm(form) {
     form.querySelector("#banner_img").src = profileData.banner.url;
     form.querySelector("#floating-banner_url").value = profileData.banner.url;
     form.querySelector("#floating-banner_alt").value = profileData.banner.alt;
+    clearLoadingIndicator();
+  } catch (error) {
+    displayErrorMessage(error);
+  }
 }
 
 export async function editProfileListener(e) {
@@ -31,5 +38,12 @@ export async function editProfileListener(e) {
     if (bannerUrl.trim() !== "" && (await verifyURL(bannerUrl))) {
       dataObject.banner = { url: bannerUrl, alt: bannerAlt };
     }
-    editProfile(dataObject,postParam);
+    try {
+      displayLoadingIndicator();
+      await editProfile(dataObject,postParam);
+      clearLoadingIndicator();
+    } catch (error) {
+      console.log(error);
+      displayErrorMessage(error);
+    }
 }

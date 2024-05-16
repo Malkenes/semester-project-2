@@ -1,5 +1,6 @@
+import { clearLoadingIndicator, displayErrorMessage, displayLoadingIndicator } from "../utils/displayLoadingIndicator.mjs";
 import { createListing } from "./api/listings.mjs";
-export function listingListener(e) {
+export async function listingListener(e) {
     e.preventDefault();
     const data = new FormData(e.target);
     const title = data.get("title");
@@ -17,6 +18,12 @@ export function listingListener(e) {
     currentMedia.forEach(med => {
         media.push({url: med.src, alt: med.alt});
     })
-    createListing({title,description,media,tags,endsAt});
+    try {
+      displayLoadingIndicator();
+      await createListing({title,description,media,tags,endsAt});
+      clearLoadingIndicator();
+    } catch (error) {
+      displayErrorMessage(error);
+    }
   }
   

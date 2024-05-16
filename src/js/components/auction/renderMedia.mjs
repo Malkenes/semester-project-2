@@ -1,3 +1,19 @@
+export function displayMedia(mediaData) {
+    const media = document.querySelector("#auction-media");
+    media.innerHTML = renderMedia(mediaData);
+    if (mediaData.length > 1) {
+        const carousel = new bootstrap.Carousel("#imageCarousel");
+        document.querySelector(".carousel-item").classList.add("active");
+        const prevBtn = document.querySelector(".carousel-control-prev");
+        prevBtn.addEventListener("click", () => {
+          carousel.prev();
+        });
+        document.querySelector(".carousel-control-next").addEventListener("click", () => {
+          carousel.next();
+        });  
+
+    }
+}
 export function renderMedia(mediaData) {
     if (mediaData.length === 0) {
         return "";

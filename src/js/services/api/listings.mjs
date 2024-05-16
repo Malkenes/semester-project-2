@@ -1,20 +1,19 @@
 import { API_BASE, API_KEY } from "../../constants.mjs";
+import { fetchRemainingData } from "./fetchRemainingData.mjs";
 const URL = API_BASE + "auction/listings";
 export async function getAllActiveListings() {
     const activeURL = URL + "?_active=true&_bids=true";
-    try {
-      let response = await fetch(activeURL);
-      let result = await response.json();
+    const response = await fetch(activeURL);
+    if (!response.ok) {
+      throw new Error("Failed to fetch Listings");
+    } else {
+      const result = await response.json();
       const listings = [];
       listings.push(...result.data);
-      while (!result.meta.isLastPage) {
-        response = await fetch(activeURL + "&page=" + (result.meta.currentPage + 1));
-        result = await response.json();
-        listings.push(...result.data);
+      if (!result.meta.isLastPage) {
+        await fetchRemainingData(activeURL,listings);
       }
       return listings;
-    } catch (error) {
-      console.log(error);
     }
 }
 
@@ -28,17 +27,12 @@ export async function createListing(data) {
       },
       body: JSON.stringify(data),
     };
-    try {
-      const response = await fetch(
-        URL,
-        options,
-      );
-      if (response.ok) {
-        const result = await response.json();
-        window.location.href = "/auction.html?id=" + result.data.id;
-      }
-    } catch (error) {
-      console.log(error);
+    const response = await fetch(URL,options);
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result);
+    } else {
+      window.location.href = `/auction.html?id=${result.data.id}`;
     }
 }
 export async function editListing(data, id) {
@@ -61,12 +55,12 @@ export async function editListing(data, id) {
   }
 }
 export async function getAuction(id) {
-  try {
-    const response = await fetch("https://v2.api.noroff.dev/auction/listings/" + id + "?_seller=true&_bids=true");
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
+  const response = await fetch(`${URL}/${id}?_seller=true&_bids=true`);
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.errors[0].message);
+  } else {
+    return result.data;
   }
 }
   

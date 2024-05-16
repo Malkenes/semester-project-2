@@ -1,3 +1,4 @@
+import { displayLoadingIndicator, clearLoadingIndicator } from "../../utils/displayLoadingIndicator.mjs";
 import { register } from "../api/register.mjs";
 import { verifyURL } from "../api/verifyUrl.mjs";
 
@@ -19,6 +20,14 @@ export async function registerListener(event) {
     if (bannerUrl.trim() !== "" && (await verifyURL(bannerUrl))) {
       dataObject.banner = { url: bannerUrl, alt: bannerAlt };
     }
-    register(dataObject);
+    try {
+      displayLoadingIndicator();
+      await register(dataObject);
+    } catch (error) {
+      clearLoadingIndicator();
+      const authError = document.querySelector("#auth-error");
+      authError.textContent = error;
+      authError.style.display = "block";  
+    }
   }
   

@@ -1,5 +1,6 @@
 import { createMediaElement } from "../components/forms/addMedia.mjs";
 import { createTagElement } from "../components/forms/addTag.mjs";
+import { clearLoadingIndicator, displayErrorMessage, displayLoadingIndicator } from "../utils/displayLoadingIndicator.mjs";
 import { editListing, getAuction } from "./api/listings.mjs";
 
 const queryString = document.location.search;
@@ -7,21 +8,32 @@ const params = new URLSearchParams(queryString);
 const postParam = params.get("id");
 
 export async function fillEditForm(form) {
-    const auctionData = await getAuction(postParam);
-    form.querySelector("input[name=title]").value = auctionData.data.title;
-    form.querySelector("textarea").value = auctionData.data.description;
-    const media = document.querySelector("#added-media");
-    auctionData.data.media.forEach(image => {
-        const mediaElement = createMediaElement(image.url,image.alt);
-        media.append(mediaElement);
-    })
-    const tags = document.querySelector("#added-tags");
-    auctionData.data.tags.forEach(tag => {
-        const tagElement = createTagElement(tag);
-        tags.append(tagElement);
-    })
+    try {
+        displayLoadingIndicator();
+        const auctionData = await getAuction(postParam);
+        if (auctionData.seller.name !== localStorage.getItem("name")) {
+            throw new Error("Not your listing");
+        }
+        form.querySelector("input[name=title]").value = auctionData.title;
+        form.querySelector("textarea").value = auctionData.description;
+        const media = document.querySelector("#media-added");
+        console.log(form);
+        auctionData.media.forEach(image => {
+            const mediaElement = createMediaElement(image.url,image.alt);
+            media.append(mediaElement);
+        })
+        const tags = document.querySelector("#tags-added");
+        auctionData.tags.forEach(tag => {
+            const tagElement = createTagElement(tag);
+            tags.append(tagElement);
+        })
+        clearLoadingIndicator();
+    } catch (error) {
+        console.log(error);
+        displayErrorMessage(error);
+    }
 }
-export function editListingListener(e) {
+export async function editListingListener(e) {
     e.preventDefault();
     const data = new FormData(e.target);
     const title = data.get("title");
@@ -38,7 +50,12 @@ export function editListingListener(e) {
     currentMedia.forEach(med => {
         media.push({url: med.src, alt: med.alt});
     })
-    editListing({title,description,media,tags},postParam);
-    //createListing({title,description,media,tags,endsAt});
+    try {
+        displayLoadingIndicator();
+        editListing({title,description,media,tags},postParam);
+        clearLoadingIndicator();
+    } catch (error) {
+        displayErrorMessage(error);
+    }
 
 }

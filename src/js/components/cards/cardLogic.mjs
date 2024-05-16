@@ -12,3 +12,12 @@ export function displayProfileListings(cardsHTML) {
     const container = document.querySelector("#active-listings");
     container.innerHTML = cardsHTML;
 }
+
+export function displayBrowseByTags(HTML) {
+    const container = document.querySelector("#browse-by-tags");
+    container.innerHTML = `
+    <div class="row bg-primary bg-opacity-25 p-3">
+        <h2>Browse by Tags</h2>
+        ${HTML}
+    </div>`;  
+}

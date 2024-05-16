@@ -1,4 +1,5 @@
 import { login } from "./login.mjs";
+import { API_BASE } from "../../constants.mjs";
 export async function register(data) {
   const options = {
     method: "post",
@@ -7,22 +8,12 @@ export async function register(data) {
     },
     body: JSON.stringify(data),
   };
-  try {
-    const response = await fetch(
-      "https://v2.api.noroff.dev/auth/register",
-      options,
-    );
-    const result = await response.json();
-    console.log(result);
-    if (!response.ok) {
-      const authError = document.querySelector("#auth-error");
-      authError.textContent = result.errors[0].message;
-      authError.style.display = "block";
-    } else {
-      const { email, password } = data;
-      login({ email, password });
-    }
-  } catch (error) {
-    console.log(error);
+  const response = await fetch(`${API_BASE}auth/register`,options);
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.errors[0].message);
+  } else {
+    const { email, password} = data;
+    login({ email, password});
   }
 }

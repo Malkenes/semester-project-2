@@ -1,3 +1,46 @@
+import { placeBidListener } from "../../listeners/auctionListeners.mjs";
+
+export function displayBid(data,isLoggedIn, active = true) {
+    const bids = data.bids;
+    const container = document.querySelector("#auction-bid");
+    container.innerHTML = "";
+    const bidContainer = document.createElement("div");
+    bidContainer.classList.add("p-3","border-bottom", "border-primary");
+    if (bids.length > 1) {
+        bidContainer.innerHTML = `<a class="float-end" data-bs-toggle="collapse" href="#all-bids-collapse" aria-expanded="false" aria-controls="all-bids-collapse">View all bids</a>`;
+    }
+    if (active) {
+        bidContainer.innerHTML += `<h2 class="fs-5">Highest bid</h2>`;
+    } else {
+        bidContainer.innerHTML += `<h2 class="fs-5">Winning bid</h2>`;
+    }
+    bidContainer.innerHTML += renderBid(bids);
+
+    const bidInput = document.createElement("div");
+    bidInput.classList.add("p-3", "border-bottom", "border-primary");
+    if (!active) {
+        bidInput.innerHTML = `<h2 class="fs-5">No more bids are being accepted</h2>`;
+    } else {
+       if (!isLoggedIn) {
+        bidInput.innerHTML = `
+            <h2 class="fs-5 mb-3">Login to place bid</h2>
+            <a href ="/login.html" class="custom-btn">
+                Login
+            </a>
+            `;
+       } else {
+        if (data.seller.name === localStorage.getItem("name")) {
+            bidInput.innerHTML = `<h2 class="fs-5">Place bid</h2><p>can not place bid on your own auction</p>`
+        } else {
+            bidInput.innerHTML = `<label for="input-bid" class="h5">Place bid</label>`;
+            const highestBid = bids.length > 0 ? bids[0].amount : 0;
+            const bidInputTest = createBidForm(highestBid);
+            bidInput.append(bidInputTest);    
+        }
+       }
+    }
+    container.append(bidContainer,bidInput);
+}
 export function renderBid(bids) {
     let string = "no bids yet";
     let allBids = "";
@@ -34,48 +77,27 @@ export function renderBid(bids) {
         }
     }
     return `
-        <div class="p-3 border-bottom border-primary">
-            ${renderAllbids(bids)}
-            <h2 class="fs-5">Highest bid</h2>
-            ${string}
-            <div class="collapse" id="all-bids-collapse">
-                ${allBids}
-            </div>
-        </div>
-        <div class="p-3 border-bottom border-primary">
-            ${renderBidInput(highestBid)}
-        </div>
-    `;
+    ${string}
+    <div class="collapse" id="all-bids-collapse">
+     ${allBids}
+    </div>
+    `
 }
-function renderAllbids(bids) {
-    if (bids.length > 1) {
-        return `<a class="float-end" data-bs-toggle="collapse" href="#all-bids-collapse" aria-expanded="false" aria-controls="all-bids-collapse">View all bids</a>`;
-    } else {
-        return "";
-    }
-}
-function renderBidInput(highestBid) {
-    if(!localStorage["accessToken"]) {
-        return `
-        <h2 class="fs-5 mb-3">Login to place bid</h2>
-        <a href ="/login.html" class="custom-btn">
-            Login
-        </a>`;
-    } else {
-        return `
-        <label for="input-bid" class="h5">Place bid</label>
-        <form id="bid-form">
-            <div class="d-flex">
-                <div class="input-group" style="max-width: 200px">
-                    <input class="form-control" type="text" id="input-bid" name="bid" value="${highestBid + 10}">
-                    <img class="input-group-text" src="/images/credit.png" height="40px">
-                </div>
-                <button class="custom-btn">Bid</button>
-            </div>
-            <div class="form-text">
-                Bids must be at least 10 credit higher than the current highest bid to be considered valid
-            </div>
-        </form>
-        `;
-    }
+function createBidForm(highestBid) {
+    const bidForm = document.createElement("form");
+    bidForm.dataset.bid = highestBid;
+    bidForm.innerHTML = `
+    <div class="d-flex">
+        <div class="input-group" style="max-width: 200px">
+            <input class="form-control" type="text" id="input-bid" name="bid" value="${highestBid + 10}">
+            <img class="input-group-text" src="/images/credit.png" height="40px">
+        </div>
+        <button class="custom-btn">Bid</button>
+    </div>
+    <div class="form-text">
+        Bids must be at least 10 credit higher than the current highest bid to be considered valid
+    </div>
+    `
+    bidForm.addEventListener("submit", placeBidListener)
+    return bidForm;
 }
