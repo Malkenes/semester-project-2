@@ -30,7 +30,7 @@ export async function placeBidListener(e) {
   if ((bidAmount - highestBid) >= 10) {
     await placeBid({ amount: bidAmount }, postParam);
     const data = await getAuction(postParam);
-    displayBid(data.bids, true);
+    displayBid(data, true);
     updateLoggedInUserUI();
   } else {
     bidInput.classList.add("is-invalid");
