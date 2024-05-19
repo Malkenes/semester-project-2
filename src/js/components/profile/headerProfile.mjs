@@ -11,7 +11,7 @@ export async function updateLoggedInUserUI() {
     `
     <div class="d-flex justify-content-center rounded-3">
       <a class="btn btn-light" href="/profile.html?name=${profile.name}">
-        <img class="rounded-circle border border-primary" height="32px" width="32px" src="${profile.avatar.url}">
+        <img class="rounded-circle border border-primary" height="32px" width="32px" src="${profile.avatar.url}" alt="${profile.avatar.alt}">
         <div class="bid-xs">
           ${profile.credits}
         </div>

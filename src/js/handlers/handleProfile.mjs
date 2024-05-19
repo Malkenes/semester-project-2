@@ -42,7 +42,8 @@ export async function handleProfile(isLoggedIn) {
                 `
             }
         } else {
-            container.textContent = "nothing to see here";
+            container.textContent = "This user has no listings";
+            container.classList.add("text-center", "mt-5");
         }
         clearLoadingIndicator();
     } catch (error) {
