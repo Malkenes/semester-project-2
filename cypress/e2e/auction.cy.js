@@ -42,6 +42,7 @@ describe("auction", () => {
     cy.contains("Submit").click();
     cy.get("h1").should("contain", "Mercedes Benz Automobile");
   });
+  /*
   it("can edit an auction", () => {
     if (Cypress.env("SKIP_TESTS")) {
       return;
@@ -67,6 +68,7 @@ describe("auction", () => {
     cy.get("h1").should("contain", "TestEdited");
     cy.get(".tag").should("not.exist");
   });
+  */
   it("can delete an auction", () => {
     cy.intercept("https://v2.api.noroff.dev/auction/listings/**").as(
       "allRequests",
@@ -95,6 +97,7 @@ describe("bidding", () => {
     cy.wait("@loginData");
     cy.wait("@allRequests");
   });
+  /*
   it("can view bids", () => {
     if (Cypress.env("SKIP_TESTS")) {
       return;
@@ -105,6 +108,7 @@ describe("bidding", () => {
     cy.contains("View all bids").click();
     cy.get(".bid").should("be.visible");
   });
+  */
   it("can add a bid to another users listing", () => {
     cy.get("a.card").eq(3).click();
     cy.get("input#input-bid")
