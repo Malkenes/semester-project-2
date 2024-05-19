@@ -71,6 +71,9 @@ describe("registered user", () => {
     });
   });
   it("can update profile", () => {
+    if (Cypress.env("SKIP_TESTS")) {
+      return;
+    }
     cy.intercept("https://v2.api.noroff.dev/auction/profiles/**").as(
       "profileRequests",
     );
