@@ -4,8 +4,8 @@ export function renderProfile(data) {
     <div class="col-lg-6" style="background-image: url(${data.banner.url})">
       ${renderEditProfileButton(data.name)}
       <div class="d-flex justify-content-around align-items-center h-200">
-        <img class="rounded-circle" src="${data.avatar.url}" height="96px" width="96px">
-        <div class="bg-white bg-opacity-50 p-3 rounded">
+        <img class="rounded-circle border border-primary" src="${data.avatar.url}" height="96px" width="96px">
+        <div class="bg-white bg-opacity-50 p-3 rounded border border-primary">
           <h1>${data.name}</h1>
         </div>
       </div>

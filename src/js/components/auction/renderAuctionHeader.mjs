@@ -4,7 +4,7 @@ export function renderAuctionHeader(title,tags) {
     } else {
         let string = `<h1>${title}</h1><div class="d-flex gap-1">`;
         tags.forEach(tag => {
-            string += `<span class="tag">${tag}</span>`;
+            string += `<a href="/search.html?value=${tag}&search=Tag" class="tag">${tag}</a>`;
         })
         string += "</div>";
         return string;
