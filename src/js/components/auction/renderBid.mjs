@@ -90,7 +90,7 @@ function createBidForm(highestBid) {
     <div class="d-flex">
         <div class="input-group" style="max-width: 200px">
             <input class="form-control" type="text" id="input-bid" name="bid" value="${highestBid + 10}">
-            <img class="input-group-text" src="/images/credit.png" height="40px">
+            <img class="input-group-text" src="/images/credit.png" alt="credit" height="40px">
         </div>
         <button class="custom-btn">Bid</button>
     </div>

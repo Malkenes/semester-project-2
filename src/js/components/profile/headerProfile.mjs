@@ -10,17 +10,17 @@ export async function updateLoggedInUserUI() {
     loggedIn.innerHTML = 
     `
     <div class="d-flex justify-content-center rounded-3">
-      <a class="btn btn-light" href="/profile.html?name=${profile.name}">
-        <img class="rounded-circle border border-primary" height="32px" width="32px" src="${profile.avatar.url}">
+      <a class="btn user-nav" href="/profile.html?name=${profile.name}">
+        <img class="rounded-circle border border-primary" height="32px" width="32px" src="${profile.avatar.url}" alt="${profile.avatar.alt}">
         <div class="bid-xs">
           ${profile.credits}
         </div>
       </a>
-      <a class="btn btn-light" href="/create_listing.html">
+      <a class="btn user-nav" href="/create_listing.html">
         <i class="fas fa-plus fs-3"></i>
         <div class="text-nowrap">Create Listing</div>
       </a>
-      <button class="btn btn-light text-danger" id="logout-btn">    
+      <button class="btn user-nav text-danger" id="logout-btn">    
         <i class="fas fa-right-from-bracket fs-3"></i>
         <div>logout</div>
       </button>

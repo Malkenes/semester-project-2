@@ -105,6 +105,10 @@ footer {
     opacity: 0;
   }
 }
+a.tag {
+  text-decoration: none;
+  color: black;
+}
 
 .bid {
   font-family: lobster;
@@ -152,7 +156,14 @@ footer {
 .h-200 {
   height: 200px;
 }
-
+.user-nav {
+  &:hover {
+    background-color: $primary-bg-subtle;
+  }
+}
+.card {
+  border: 0;
+}
 .custom-pagination {
   @extend .pagination, .gap-2;
   .page-link {
