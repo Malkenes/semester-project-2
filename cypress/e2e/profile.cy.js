@@ -83,6 +83,7 @@ describe("registered user", () => {
     });
     cy.contains("Continue").click();
     cy.contains("Update").click();
+    cy.wait("@profileRequests");
     cy.get("#profile-info img").should(
       "have.attr",
       "src",
@@ -97,6 +98,7 @@ describe("registered user", () => {
     });
     cy.contains("Continue").click();
     cy.contains("Update").click();
+    cy.wait("@profileRequests");
     cy.get("#profile-info img").should(
       "have.attr",
       "src",

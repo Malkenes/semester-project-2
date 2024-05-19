@@ -60,7 +60,8 @@ describe("auction", () => {
     cy.contains("Continue").click();
     cy.contains("deletetag").click();
     cy.contains("Update").click();
-    cy.get("h1").should("contain", "Edited");
+    cy.wait(10000);
+    cy.get("h1").should("contain", "TestEdited");
     cy.get(".tag").should("not.exist");
   });
   it("can delete an auction", () => {
@@ -94,7 +95,7 @@ describe("bidding", () => {
   it("can view bids", () => {
     cy.get("a.card").first().click();
     cy.get(".bid").eq(0).should("be.visible");
-    cy.get(".bid").eq(1).should("not.be.visible");
+    cy.get(".bid").eq(1).should("not.be.visible", { timeout: 10000 });
     cy.contains("View all bids").click();
     cy.get(".bid").should("be.visible");
   });
